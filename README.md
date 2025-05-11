@@ -1,52 +1,52 @@
 
 # 🎓 Expert System for Career Advice
 
-Hệ chuyên gia tư vấn nghề nghiệp được xây dựng phục vụ cho môn **Hệ chuyên gia**, giúp người dùng xác định các nghề nghiệp phù hợp dựa trên sở thích, kỹ năng và thông tin cá nhân. Hệ thống sử dụng **Prolog** cho suy luận luật và **Python (Tkinter)** để xây dựng giao diện người dùng.
+This expert system was developed for the **Expert Systems** course. It helps users determine suitable careers based on their interests, skills, and personal information. The system uses **Prolog** for rule-based inference and **Python (Tkinter)** to build the user interface.
 
-## 📁 Cấu trúc dự án
+## 📁 Project Structure
 
 ```
 Expert_System/
-├── career_advice_system.py     # Giao diện người dùng với Tkinter
-├── career_prolog.py            # Tương tác giữa Python và Prolog (xử lý logic)
-├── career_rules.pl             # Tập luật nghề nghiệp viết bằng Prolog
-├── requirements.txt            # Thư viện cần cài đặt
+├── career_advice_system.py     # User interface built with Tkinter
+├── career_prolog.py            # Logic handling and Python-Prolog interaction
+├── career_rules.pl             # Career rules written in Prolog
+├── requirements.txt            # Required Python packages
 ```
 
-## ⚙️ Công nghệ sử dụng
+## ⚙️ Technologies Used
 
-- Python 3.x
-- SWI-Prolog
-- PySWIP (Python-Prolog bridge)
-- Tkinter (Giao diện người dùng)
+- Python 3.x  
+- SWI-Prolog  
+- PySWIP (Python-Prolog bridge)  
+- Tkinter (for GUI)
 
-## 🚀 Cách chạy chương trình
+## 🚀 How to Run
 
-### 1. Cài đặt thư viện Python
+### 1. Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Cài SWI-Prolog
+### 2. Install SWI-Prolog
 
-Tải từ: https://www.swi-prolog.org/Download.html  
-Sau đó đảm bảo lệnh `swipl` có thể chạy từ terminal (cấu hình PATH nếu cần).
+Download from: https://www.swi-prolog.org/Download.html  
+Make sure the `swipl` command is accessible from the terminal (add to PATH if needed).
 
-### 3. Chạy chương trình
+### 3. Run the program
 
 ```bash
 python career_advice_system.py
 ```
 
-## 🧠 Cách hoạt động
+## 🧠 How It Works
 
-1. Người dùng chọn các thông tin như độ tuổi, sở thích, kỹ năng,...
-2. Python gửi dữ liệu sang Prolog.
-3. Prolog dùng tập luật trong `career_rules.pl` để suy diễn.
-4. Python nhận kết quả và hiển thị trên giao diện.
+1. The user selects inputs such as age group, hobbies, skills, etc.
+2. Python sends this information to Prolog.
+3. Prolog processes the facts using the rules defined in `career_rules.pl`.
+4. Python receives the inferred result and displays it in the GUI.
 
-## 📜 Ví dụ luật Prolog
+## 📜 Sample Prolog Rules
 
 ```prolog
 career(young, art, literature, creative, "Graphic Designer").
@@ -54,21 +54,21 @@ career(adult, tech, math, analytical, "Data Scientist").
 career(teen, nature, biology, caring, "Veterinarian").
 ```
 
-## 📌 Ghi chú
+## 📌 Notes
 
-- Có thể mở rộng tập luật để hỗ trợ thêm nhiều nghề nghiệp.
-- Hệ thống hỗ trợ đa hướng, có thể mở rộng gợi ý khóa học hoặc giải thích kết quả.
+- The rule base can be expanded to support more careers.
+- The system is designed to be extensible, such as adding course suggestions or result explanations.
 
-## 👨‍💻 Tác giả
+## 👨‍💻 Author
 
-- Tên sinh viên: [Điền tên bạn]
-- Môn học: Hệ chuyên gia
-- Trường: [Tên trường hoặc khoa]
+- Student Name: [Enter your name]  
+- Course: Expert Systems  
+- University: [Enter your university or faculty]
 
 ## 📸 Demo
 
-*Thêm hình ảnh nếu có tại đây*
+*Add screenshots here if available*
 
-## 📄 Giấy phép
+## 📄 License
 
-Dự án phát triển phục vụ mục đích học tập.
+This project is developed for educational purposes.
