@@ -60,12 +60,13 @@ class CareerExpertSystem:
     def advise_career(self, *answers):
         # Kiểm tra đủ 40 câu trả lời
         if len(answers) != 40:
-            raise ValueError("Cần đúng 40 câu trả lời!")
-        
-        # Kiểm tra tính hợp lệ của câu trả lời
+            raise ValueError("Exactly 40 answers are required!")
+
+        # Validate each answer
         for i, ans in enumerate(answers, 1):
             if ans not in self.valid_answers[i]:
-                raise ValueError(f"Câu trả lời không hợp lệ cho câu {i}: '{ans}'. Phải là một trong {self.valid_answers[i]}")
+                raise ValueError(f"Invalid answer for question {i}: '{ans}'. Must be one of {self.valid_answers[i]}")
+
         
         # Chuẩn hóa câu trả lời
         escaped_answers = [self._escape_prolog_string(str(ans)) for ans in answers]
@@ -100,7 +101,7 @@ class CareerExpertSystem:
         except Exception as e:
             print(f"[DEBUG] Prolog query error: {str(e)}")
             print(f"[DEBUG] Answers: {answers}")
-            raise RuntimeError(f"Prolog query failed: {str(e)}. Kiểm tra file career_rules.pl hoặc câu trả lời.")
+            raise RuntimeError(f"Prolog query failed: {str(e)}. Please check career_rules.pl or your answers.")
 
     def get_demand_data(self):
         # Cập nhật dữ liệu để bao gồm nhiều nghề hơn
@@ -124,27 +125,27 @@ class CareerExpertSystem:
         plt.savefig('career_trends.png')
         plt.close()
 
-# Test hệ thống với bộ câu trả lời mẫu
-if __name__ == "__main__":
-    try:
-        es = CareerExpertSystem()
-        sample_answers = [
-            "19-22", "Problem Solving", "Computer Science", "Programming", "Creativity",
-            "Analytical", "Sometimes", "Yes", "High", "Good",
-            "Yes", "Yes", "Excellent", "Highly Independent", "Office job",
-            "Yes", "Yes", "High", "Somewhat Important", "Well",
-            "Not Important", "Problem Solving", "Good", "Long-term", "Yes",
-            "Yes", "Somewhat Important", "Yes", "Very Open", "Technology",
-            "Independent", "Very Comfortable", "Very Important", "Yes", "Yes",
-            "Medium Influence", "No", "Somewhat Important", "Indoors", "Somewhat Important"
-        ]
-        print("Running test with sample answers for Software Developer...")
-        results = es.advise_career(*sample_answers)
-        for career, score, explanation in results:
-            print(f"👉 {career} (Điểm: {score})\n🧠 Lý do: {explanation}\n")
+# # Test hệ thống với bộ câu trả lời mẫu
+# if __name__ == "__main__":
+#     try:
+#         es = CareerExpertSystem()
+#         sample_answers = [
+#             "19-22", "Problem Solving", "Computer Science", "Programming", "Creativity",
+#             "Analytical", "Sometimes", "Yes", "High", "Good",
+#             "Yes", "Yes", "Excellent", "Highly Independent", "Office job",
+#             "Yes", "Yes", "High", "Somewhat Important", "Well",
+#             "Not Important", "Problem Solving", "Good", "Long-term", "Yes",
+#             "Yes", "Somewhat Important", "Yes", "Very Open", "Technology",
+#             "Independent", "Very Comfortable", "Very Important", "Yes", "Yes",
+#             "Medium Influence", "No", "Somewhat Important", "Indoors", "Somewhat Important"
+#         ]
+#         print("Running test with sample answers for Software Developer...")
+#         results = es.advise_career(*sample_answers)
+#         for career, score, explanation in results:
+#             print(f"👉 {career} (Điểm: {score})\n🧠 Lý do: {explanation}\n")
         
-        careers, demand = es.get_demand_data()
-        es.plot_career_trends(careers, demand)
-        print("Career trends plot saved as 'career_trends.png'")
-    except Exception as e:
-        print(f"Error during test: {str(e)}")
+#         careers, demand = es.get_demand_data()
+#         es.plot_career_trends(careers, demand)
+#         print("Career trends plot saved as 'career_trends.png'")
+#     except Exception as e:
+#         print(f"Error during test: {str(e)}")

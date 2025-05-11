@@ -138,31 +138,32 @@ def reset_form():
 def advise_career():
     fullname = entry_fullname.get().strip()
     if not fullname:
-        messagebox.showwarning("Thiếu thông tin", "Vui lòng nhập họ tên!")
+        messagebox.showwarning("Missing Information", "Please enter your full name!")
         return
 
     answers = [var.get().strip() for var in question_vars]
     if any(ans == "none_selected" for ans in answers):
-        messagebox.showwarning("Thiếu câu trả lời", "Vui lòng trả lời đầy đủ tất cả câu hỏi!")
+        messagebox.showwarning("Missing Answers", "Please answer all the questions completely!")
         return
+
 
     try:
         es = CareerExpertSystem()
         result = es.advise_career(*answers)
         text_result.config(state='normal')
         text_result.delete("1.0", tk.END)
-        text_result.insert(tk.END, f"Kính gửi {fullname},\n\nDựa trên câu trả lời của bạn, đây là các gợi ý nghề nghiệp:\n\n")
+        text_result.insert(tk.END, f"Dear {fullname},\n\nBased on your answers, here are some career suggestions:\n\n")
         for career, score, explanation in result:
-            text_result.insert(tk.END, f"👉 {career} (Điểm: {score})\n🧠 Lý do: {explanation}\n\n")
+            text_result.insert(tk.END, f"👉 {career} (Score: {score})\n🧠 Reason: {explanation}\n\n")
         text_result.config(state='disabled')
     except Exception as e:
         invalid_answers = [(i+1, ans) for i, ans in enumerate(answers) if ans not in question_list[i][1]]
-        error_msg = f"Đã xảy ra lỗi: {str(e)}\n"
+        error_msg = f"An error occurred: {str(e)}\n"
         if invalid_answers:
-            error_msg += f"Các câu trả lời không hợp lệ:\n" + "\n".join([f"Câu {q}: {ans}" for q, ans in invalid_answers])
+            error_msg += f"Invalid answers:\n" + "\n".join([f"Question {q}: {ans}" for q, ans in invalid_answers])
         else:
-            error_msg += "Vui lòng kiểm tra lại câu trả lời hoặc file Prolog."
-        messagebox.showerror("Lỗi", error_msg)
+            error_msg += "Please check your answers or the Prolog file."
+        messagebox.showerror("Error", error_msg)
         print(f"[ERROR] Exception in advise_career: {str(e)}")
         print(f"[DEBUG] Answers: {answers}")
 
